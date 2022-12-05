@@ -9,8 +9,8 @@ from LeNet_Implementation import *
 from sklearn.model_selection import train_test_split
 import torch.utils.data as data
 
-
-root_path = "C:\\Users\\Max\\Documents\\GitHub\\Shark-Species-Classification"
+user= 'perso'
+root_path = "C:\\Users\\" + user +"\\Documents\\GitHub\\Shark-Species-Classification"
 data_path = os.path.join(root_path, 'Genus Carcharhinus')
 
 

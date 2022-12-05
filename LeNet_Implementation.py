@@ -32,11 +32,13 @@ torch.cuda.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
 
 class ImageLoader():
-    def __init__(self, dataset_path='./Modern shark teeth'):
+    def __init__(self, dataset_path='./Modern shark teeth', resize=[336,224]):
         self.dataset_path = dataset_path
         # load dataset
         self.x, self.y = load_dataset_folder(self.dataset_path)
         self.transform_x = transforms.Compose([
+                                      transforms.Grayscale(num_output_channels=1),
+                                      transforms.Resize(resize, Image.ANTIALIAS),
                                       transforms.ToTensor(),
                                       transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                                   std=[0.229, 0.224, 0.225])]) #Figure out how to calculate our actual mean and std
@@ -59,21 +61,37 @@ def Dataset_Splitter(ratio, dataset):
     
     return train_dataset, test_dataset
 
-class LeNet(nn.Module):
-    def __init__(self, output_dim):
+# 5184 x 3456
+
+class MMNet(nn.Module):
+    def __init__(self, output_dim= 9):
         super().__init__()
 
-        self.conv1 = nn.Conv2d(in_channels=1,
-                               out_channels=6,
-                               kernel_size=5)
+        self.conv1 = nn.Conv2d(in_channels=3,
+                               out_channels=32,
+                               kernel_size=3)
 
-        self.conv2 = nn.Conv2d(in_channels=6,
-                               out_channels=16,
-                               kernel_size=5)
+        self.conv2 = nn.Conv2d(in_channels=32,
+                               out_channels=64,
+                               kernel_size=3,
+                               padding= 1)
+        self.conv3 = nn.Conv2d(in_channels = 64,
+                               out_channels = 32,
+                               kernel_size = 2,
+                               )
+        self.conv4 = nn.Conv2d(in_channels = 32,
+                               out_channels = 16,
+                               kernel_size = 3,
+                               stride= 2
+                               )
+        self.conv5 = nn.Conv2d(in_channels = 16,
+                               out_channels = 8,
+                               kernel_size = 3
+                               )
 
-        self.fc_1 = nn.Linear(16 * 4 * 4, 120)
-        self.fc_2 = nn.Linear(120, 84)
-        self.fc_3 = nn.Linear(84, output_dim)
+        self.fc_1 = nn.Linear(20*13*8, 6336)
+        self.fc_2 = nn.Linear(6336, 99)
+        self.fc_3 = nn.Linear(99, output_dim)
 
     def forward(self, x):
 
@@ -83,7 +101,7 @@ class LeNet(nn.Module):
 
         # x = [batch size, 6, 24, 24]
 
-        x = F.max_pool2d(x, kernel_size=2)
+        x = F.max_pool2d(x, kernel_size=2, stride=2)
 
         # x = [batch size, 6, 12, 12]
 
@@ -93,13 +111,23 @@ class LeNet(nn.Module):
 
         # x = [batch size, 16, 8, 8]
 
-        x = F.max_pool2d(x, kernel_size=2)
+        x = self.conv3(x)
 
-        # x = [batch size, 16, 4, 4]
+        x = F.max_pool2d(x, kernel_size=2, stride= 2)
 
         x = F.relu(x)
 
-        x = x.view(x.shape[0], -1)
+        # x = [batch size, 16, 4, 4]
+
+        x = self.conv4(x)
+
+        x = F.max_pool2d(x, kernel_size=2, stride= 2)
+
+        x = F.relu(x)
+
+        x = self.conv5(x)
+
+      #  x = x.view(x.shape[0], -1)
 
         # x = [batch size, 16*4*4 = 256]
 
