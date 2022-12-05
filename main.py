@@ -7,10 +7,12 @@ from Training_Poly_Processing_Pipeline import *
 from Testing_Poly_Processing_Pipeline import *
 from LeNet_Implementation import *
 from sklearn.model_selection import train_test_split
+import torch.utils.data as data
 
 
-root_path = "C:\\Users\\Max\\dev\\Shark Tooth Classification\\"
-data_path = root_path + 'Modern Shark Teeth'
+root_path = "C:\\Users\\Max\\Documents\\GitHub\\Shark-Species-Classification"
+data_path = os.path.join(root_path, 'Genus Carcharhinus')
+
 
 dataset = ImageLoader(data_path)
 
@@ -30,7 +32,14 @@ test_iterator = data.DataLoader(test_dataset,
                                 batch_size=BATCH_SIZE)
 
 
+criterion = nn.CrossEntropyLoss()
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+"""
+optimizer = optim.Adam(model.parameters())
+model = model.to(device)
+criterion = criterion.to(device)
+"""
 """
 image_files, labels = load_dataset_folder(data_path)
 features, processed_labels = Features_Processing(image_files, labels)
