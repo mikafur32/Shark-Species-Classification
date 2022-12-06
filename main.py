@@ -14,6 +14,7 @@ from LeNet_Implementation import *
 from sklearn.model_selection import train_test_split
 import torch.utils.data as data
 
+<<<<<<< Updated upstream
 import torch
 
 print(torch.cuda.get_device_name())
@@ -24,15 +25,34 @@ print(x)
 
 """
 user= 'Max'
+=======
+'''
+print(torch.cuda.is_available())
+
+print(torch.cuda.get_device_capability())
+'''
+
+
+
+
+
+user= 'perso'
+>>>>>>> Stashed changes
 root_path = "C:\\Users\\" + user + "\\Documents\\GitHub\\Shark-Species-Classification"
 data_path = os.path.join(root_path, 'Genus Carcharhinus')
 
 
 dataset = ImageLoader(data_path)
 
+<<<<<<< Updated upstream
 train_dataset, test_dataset = Dataset_Splitter(.8, dataset)
 train_train_dataset, validation_dataset = Dataset_Splitter(.8, train_dataset)
 
+=======
+train_dataset, test_dataset = Dataset_Splitter(.5, dataset)
+train_train_dataset, validation_dataset = Dataset_Splitter(.9, train_dataset)
+'''
+>>>>>>> Stashed changes
 BATCH_SIZE = 64
 
 train_iterator = data.DataLoader(train_train_dataset,
@@ -49,16 +69,24 @@ OUTPUT_DIM = 9
 model = MMNet(OUTPUT_DIM)
 
 criterion = nn.CrossEntropyLoss()
+<<<<<<< Updated upstream
 device = torch.device('cuda')#if torch.cuda.is_available() else 'cpu')
+=======
+device = torch.device('cuda') #if torch.cuda.is_available() else 'cpu')
+>>>>>>> Stashed changes
 optimizer = optim.Adam(model.parameters())
 model = model.to(device)
 criterion = criterion.to(device)
 
-EPOCHS = 20
+EPOCHS = [1,3,5,10,15,20,30]
+EPOCHS = 7
+best_epoch = 0
 
 best_valid_loss = float('inf')
+'''
 
-for epoch in trange(EPOCHS, desc="Epochs"):
+'''
+for epoch_ in trange(EPOCHS, desc="Epochs"):
 
     train_loss, train_acc = train(model, train_iterator, optimizer, criterion, device)
     valid_loss, valid_acc = evaluate(model, valid_iterator, criterion, device)
@@ -66,18 +94,26 @@ for epoch in trange(EPOCHS, desc="Epochs"):
     if valid_loss < best_valid_loss:
         best_valid_loss = valid_loss
         torch.save(model.state_dict(), 'MMnet-model.pt')
+        best_epoch = epoch_
 
     print(f'Train Loss: {train_loss:.3f} | Train Acc: {train_acc*100:.2f}%')
     print(f'\t Val. Loss: {valid_loss:.3f} |  Val. Acc: {valid_acc*100:.2f}%')
 
+'''
+#model.load_state_dict(torch.load('MMnet-model.pt'))
 
-model.load_state_dict(torch.load('MMnet-model.pt'))
+#test_loss, test_acc = evaluate(model, test_iterator, criterion, device)
 
-test_loss, test_acc = evaluate(model, test_iterator, criterion, device)
+#print(f'Test Loss: {test_loss:.3f} | Test Acc: {test_acc*100:.2f}%')
 
+<<<<<<< Updated upstream
 print(f'Test Loss: {test_loss:.3f} | Test Acc: {test_acc*100:.2f}%')
 """
 """
+=======
+
+
+>>>>>>> Stashed changes
 image_files, labels = load_dataset_folder(data_path)
 features, processed_labels = Features_Processing(image_files, labels)
 
@@ -96,4 +132,3 @@ print("c: ", c)
 print("d: ", d)
 print("Training Accuracy: ", training_accuracy)
 print("Testing Accuracy: ", testing_accuracy)
-"""

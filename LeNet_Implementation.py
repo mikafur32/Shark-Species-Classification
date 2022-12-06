@@ -22,7 +22,7 @@ torch.backends.cudnn.deterministic = True
 
 
 class ImageLoader():
-    def __init__(self, dataset_path='./Modern shark teeth', resize=(336, 224)):
+    def __init__(self, dataset_path='./Modern shark teeth', resize=(224, 224)):
         self.dataset_path = dataset_path
         # load dataset
         self.x, self.y = load_dataset_folder(self.dataset_path)
