@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 import torch.utils.data as data
 
 user= 'Max'
-root_path = "C:\\Users\\" + user +"\\Documents\\GitHub\\Shark-Species-Classification"
+root_path = "C:\\Users\\" + user + "\\Documents\\GitHub\\Shark-Species-Classification"
 data_path = os.path.join(root_path, 'Genus Carcharhinus')
 
 

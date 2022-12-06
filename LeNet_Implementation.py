@@ -1,4 +1,6 @@
 from PIL import Image
+from torchvision.transforms import InterpolationMode
+
 from Load_Dataset_Folder import *
 
 import torch
@@ -18,14 +20,15 @@ torch.manual_seed(SEED)
 torch.cuda.manual_seed(SEED)
 torch.backends.cudnn.deterministic = True
 
+
 class ImageLoader():
-    def __init__(self, dataset_path='./Modern shark teeth', resize=[336, 224]):
+    def __init__(self, dataset_path='./Modern shark teeth', resize=(336, 224)):
         self.dataset_path = dataset_path
         # load dataset
         self.x, self.y = load_dataset_folder(self.dataset_path)
         self.transform_x = transforms.Compose([
                                       #transforms.Grayscale(num_output_channels=1),
-                                      transforms.Resize(resize, Image.ANTIALIAS),
+                                      transforms.Resize(resize, InterpolationMode.BILINEAR),
                                       transforms.ToTensor(),
                                       transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                                   std=[0.229, 0.224, 0.225])])
