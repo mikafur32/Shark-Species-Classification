@@ -14,7 +14,6 @@ from LeNet_Implementation import *
 from sklearn.model_selection import train_test_split
 import torch.utils.data as data
 
-<<<<<<< Updated upstream
 import torch
 
 print(torch.cuda.get_device_name())
