@@ -17,6 +17,7 @@ import torch.utils.data as data
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import torch
 
 print(torch.cuda.get_device_name())
@@ -28,6 +29,8 @@ print(x)
 """
 user= 'Max'
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -48,6 +51,9 @@ user= 'perso'
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -72,6 +78,9 @@ train_train_dataset, validation_dataset = Dataset_Splitter(.9, train_dataset)
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -99,7 +108,11 @@ criterion = nn.CrossEntropyLoss()
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 device = torch.device('cuda')#if torch.cuda.is_available() else 'cpu')
+=======
+device = torch.device('cuda') #if torch.cuda.is_available() else 'cpu')
+>>>>>>> Stashed changes
 =======
 device = torch.device('cuda') #if torch.cuda.is_available() else 'cpu')
 >>>>>>> Stashed changes
@@ -148,9 +161,14 @@ for epoch_ in trange(EPOCHS, desc="Epochs"):
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 print(f'Test Loss: {test_loss:.3f} | Test Acc: {test_acc*100:.2f}%')
 """
 """
+=======
+
+
+>>>>>>> Stashed changes
 =======
 
 
