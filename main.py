@@ -13,11 +13,6 @@ from evaluate import *
 from LeNet_Implementation import *
 from sklearn.model_selection import train_test_split
 import torch.utils.data as data
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import torch
 
 print(torch.cuda.get_device_name())
@@ -26,17 +21,9 @@ print(torch.version.cuda)
 x = torch.randn(1).cuda()
 print(x)
 
-"""
+
 user= 'Max'
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 '''
 print(torch.cuda.is_available())
 
@@ -48,46 +35,20 @@ print(torch.cuda.get_device_capability())
 
 
 user= 'perso'
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 root_path = "C:\\Users\\" + user + "\\Documents\\GitHub\\Shark-Species-Classification"
 data_path = os.path.join(root_path, 'Genus Carcharhinus')
 
 
 dataset = ImageLoader(data_path)
 
-<<<<<<< Updated upstream
 train_dataset, test_dataset = Dataset_Splitter(.8, dataset)
 train_train_dataset, validation_dataset = Dataset_Splitter(.8, train_dataset)
 
-=======
 train_dataset, test_dataset = Dataset_Splitter(.5, dataset)
 train_train_dataset, validation_dataset = Dataset_Splitter(.9, train_dataset)
 '''
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 BATCH_SIZE = 64
 
 train_iterator = data.DataLoader(train_train_dataset,
@@ -104,27 +65,8 @@ OUTPUT_DIM = 9
 model = MMNet(OUTPUT_DIM)
 
 criterion = nn.CrossEntropyLoss()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-device = torch.device('cuda')#if torch.cuda.is_available() else 'cpu')
-=======
+
 device = torch.device('cuda') #if torch.cuda.is_available() else 'cpu')
->>>>>>> Stashed changes
-=======
-device = torch.device('cuda') #if torch.cuda.is_available() else 'cpu')
->>>>>>> Stashed changes
-=======
-device = torch.device('cuda') #if torch.cuda.is_available() else 'cpu')
->>>>>>> Stashed changes
-=======
-device = torch.device('cuda') #if torch.cuda.is_available() else 'cpu')
->>>>>>> Stashed changes
-=======
-device = torch.device('cuda') #if torch.cuda.is_available() else 'cpu')
->>>>>>> Stashed changes
 optimizer = optim.Adam(model.parameters())
 model = model.to(device)
 criterion = criterion.to(device)
@@ -151,40 +93,17 @@ for epoch_ in trange(EPOCHS, desc="Epochs"):
     print(f'\t Val. Loss: {valid_loss:.3f} |  Val. Acc: {valid_acc*100:.2f}%')
 
 '''
+
+'''
 #model.load_state_dict(torch.load('MMnet-model.pt'))
 
 #test_loss, test_acc = evaluate(model, test_iterator, criterion, device)
 
 #print(f'Test Loss: {test_loss:.3f} | Test Acc: {test_acc*100:.2f}%')
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 print(f'Test Loss: {test_loss:.3f} | Test Acc: {test_acc*100:.2f}%')
-"""
-"""
-=======
 
-
->>>>>>> Stashed changes
-=======
-
-
->>>>>>> Stashed changes
-=======
-
-
->>>>>>> Stashed changes
-=======
-
-
->>>>>>> Stashed changes
-=======
-
-
->>>>>>> Stashed changes
 image_files, labels = load_dataset_folder(data_path)
 features, processed_labels = Features_Processing(image_files, labels)
 
@@ -203,3 +122,4 @@ print("c: ", c)
 print("d: ", d)
 print("Training Accuracy: ", training_accuracy)
 print("Testing Accuracy: ", testing_accuracy)
+'''
