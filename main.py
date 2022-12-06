@@ -22,17 +22,11 @@ x = torch.randn(1).cuda()
 print(x)
 
 
-user= 'Max'
-
 '''
 print(torch.cuda.is_available())
 
 print(torch.cuda.get_device_capability())
 '''
-
-
-
-
 
 user= 'perso'
 
