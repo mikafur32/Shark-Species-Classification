@@ -14,6 +14,15 @@ from LeNet_Implementation import *
 from sklearn.model_selection import train_test_split
 import torch.utils.data as data
 
+import torch
+
+print(torch.cuda.get_device_name())
+print(torch.__version__)
+print(torch.version.cuda)
+x = torch.randn(1).cuda()
+print(x)
+
+"""
 user= 'Max'
 root_path = "C:\\Users\\" + user + "\\Documents\\GitHub\\Shark-Species-Classification"
 data_path = os.path.join(root_path, 'Genus Carcharhinus')
@@ -21,8 +30,8 @@ data_path = os.path.join(root_path, 'Genus Carcharhinus')
 
 dataset = ImageLoader(data_path)
 
-train_dataset, test_dataset = Dataset_Splitter(.5, dataset)
-train_train_dataset, validation_dataset = Dataset_Splitter(.9, train_dataset)
+train_dataset, test_dataset = Dataset_Splitter(.8, dataset)
+train_train_dataset, validation_dataset = Dataset_Splitter(.8, train_dataset)
 
 BATCH_SIZE = 64
 
@@ -40,7 +49,7 @@ OUTPUT_DIM = 9
 model = MMNet(OUTPUT_DIM)
 
 criterion = nn.CrossEntropyLoss()
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda')#if torch.cuda.is_available() else 'cpu')
 optimizer = optim.Adam(model.parameters())
 model = model.to(device)
 criterion = criterion.to(device)
@@ -67,8 +76,7 @@ model.load_state_dict(torch.load('MMnet-model.pt'))
 test_loss, test_acc = evaluate(model, test_iterator, criterion, device)
 
 print(f'Test Loss: {test_loss:.3f} | Test Acc: {test_acc*100:.2f}%')
-
-
+"""
 """
 image_files, labels = load_dataset_folder(data_path)
 features, processed_labels = Features_Processing(image_files, labels)
