@@ -5,6 +5,7 @@ import random
 from PIL import Image
 from torchvision.transforms import InterpolationMode
 from torch.utils.data import random_split
+import torch
 
 
 SEED = 0
