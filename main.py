@@ -1,5 +1,3 @@
-from torch import optim
-from tqdm.notebook import tqdm, trange
 from Build_Histogram import *
 from Detect_Feature_And_KeyPoints import *
 from Load_Dataset_Folder import *
@@ -7,10 +5,10 @@ from Features_Processing import *
 from Linear_Processsing_Pipeline import *
 from Training_Poly_Processing_Pipeline import *
 from Testing_Poly_Processing_Pipeline import *
-from calculate_accuracy import *
-from train import *
-from evaluate import *
+from Evaliate_Traininf_accuracy_of_Model import *
 from LeNet_Implementation import *
+from torch import optim
+from tqdm.notebook import tqdm, trange
 from sklearn.model_selection import train_test_split
 import torch.utils.data as data
 import torch

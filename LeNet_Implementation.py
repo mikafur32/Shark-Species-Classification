@@ -1,56 +1,7 @@
-from PIL import Image
-from torchvision.transforms import InterpolationMode
-
 from Load_Dataset_Folder import *
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.utils.data import random_split
-
-import torchvision.transforms as transforms
-import numpy as np
-import random
-
-
-SEED = 0
-random.seed(SEED)
-np.random.seed(SEED)
-torch.manual_seed(SEED)
-torch.cuda.manual_seed(SEED)
-torch.backends.cudnn.deterministic = True
-
-
-class ImageLoader():
-    def __init__(self, dataset_path='./Modern shark teeth', resize=(224, 224)):
-        self.dataset_path = dataset_path
-        # load dataset
-        self.x, self.y = load_dataset_folder(self.dataset_path)
-        self.transform_x = transforms.Compose([
-                                      #transforms.Grayscale(num_output_channels=1),
-                                      transforms.Resize(resize, InterpolationMode.BILINEAR),
-                                      transforms.ToTensor(),
-                                      transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                                  std=[0.229, 0.224, 0.225])])
-
-    def __getitem__(self, idx):
-        x = self.x[idx]
-        x = Image.open(x).convert('RGB')
-        x = self.transform_x(x)
-        y = self.y[idx]
-        return x, y
-
-    def __len__(self):
-        return len(self.x)
-    
-    
-def Dataset_Splitter(ratio, dataset):
-    train_list = int(len(dataset)*ratio)
-    test_list = len(dataset) - train_list
-    
-    train_dataset, test_dataset = random_split(dataset=dataset, lengths=[train_list, test_list])
-    
-    return train_dataset, test_dataset
 
 
 class MMNet_336_224(nn.Module):
