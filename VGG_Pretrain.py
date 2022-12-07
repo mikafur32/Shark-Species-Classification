@@ -20,6 +20,7 @@ import copy
 import random
 import time
 
+
 class VGG(nn.Module):
     def __init__(self, features, output_dim):
         super().__init__()
