@@ -4,8 +4,13 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
+# Depreciated File
+# Contains contents for our attempt at a neural network based of LeNet
+# This can be ignored as it is not used for any of the program
+
+'''
 class MMNet_336_224(nn.Module):
-    def __init__(self, output_dim= 9):
+    def __init__(self, output_dim=9):
         super().__init__()
 
         self.conv1 = nn.Conv2d(in_channels=3,
@@ -15,22 +20,22 @@ class MMNet_336_224(nn.Module):
         self.conv2 = nn.Conv2d(in_channels=32,
                                out_channels=64,
                                kernel_size=3,
-                               padding= 1)
+                               padding=1)
 
-        self.conv3 = nn.Conv2d(in_channels = 64,
-                               out_channels = 32,
-                               kernel_size = 2,
+        self.conv3 = nn.Conv2d(in_channels=64,
+                               out_channels=32,
+                               kernel_size=2,
                                )
 
-        self.conv4 = nn.Conv2d(in_channels = 32,
-                               out_channels = 16,
-                               kernel_size = 3,
-                               stride= 2
+        self.conv4 = nn.Conv2d(in_channels=32,
+                               out_channels=16,
+                               kernel_size=3,
+                               stride=2
                                )
 
-        self.conv5 = nn.Conv2d(in_channels = 16,
-                               out_channels = 8,
-                               kernel_size = 3
+        self.conv5 = nn.Conv2d(in_channels=16,
+                               out_channels=8,
+                               kernel_size=3
                                )
 
         self.fc_1 = nn.Linear(8 * 18 * 11, 6336)
@@ -38,7 +43,6 @@ class MMNet_336_224(nn.Module):
         self.fc_3 = nn.Linear(99, output_dim)
 
     def forward(self, x):
-
         # x = [batch size, 1, 28, 28]
 
         x = self.conv1(x)
@@ -57,7 +61,7 @@ class MMNet_336_224(nn.Module):
 
         x = self.conv3(x)
 
-        x = F.max_pool2d(x, kernel_size=2, stride= 2)
+        x = F.max_pool2d(x, kernel_size=2, stride=2)
 
         x = F.relu(x)
 
@@ -65,7 +69,7 @@ class MMNet_336_224(nn.Module):
 
         x = self.conv4(x)
 
-        x = F.max_pool2d(x, kernel_size=2, stride= 2)
+        x = F.max_pool2d(x, kernel_size=2, stride=2)
 
         x = F.relu(x)
 
@@ -95,7 +99,7 @@ class MMNet_336_224(nn.Module):
 
         return x, h
 
-
+'''
 '''
 class MMNet_224(nn.Module):
     def __init__(self, output_dim= 9):
@@ -188,4 +192,3 @@ class MMNet_224(nn.Module):
 
         return x, h
 '''
-
