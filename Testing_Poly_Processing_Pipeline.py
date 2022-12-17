@@ -4,12 +4,12 @@ from sklearn.cluster import KMeans
 from Build_Histogram import *
 
 
-def Testing_Poly_SVC(training_features, testing_features, training_labels, testing_labels, c, d):
+def Testing_Poly_SVC(training_features, testing_features, training_labels, testing_labels, c, d, k):
     descriptors_training = training_features[0]
     for descriptor in training_features[1:]:
         descriptors_training = np.vstack((descriptors_training, descriptor))
 
-    kmeans = KMeans(n_clusters=9, random_state=0)
+    kmeans = KMeans(n_clusters=k, random_state=0)
     kmeans.fit(descriptors_training)
 
     histograms_training = []
@@ -27,4 +27,5 @@ def Testing_Poly_SVC(training_features, testing_features, training_labels, testi
     testing_predictions = svm_clf.predict(histograms_testing)  # create predictions based of the polynomial classifier
 
     accuracy = accuracy_score(testing_predictions, testing_labels)
+
     return accuracy
