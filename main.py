@@ -13,20 +13,8 @@ from sklearn.model_selection import train_test_split
 import torch.utils.data as data
 import torch
 
-print(torch.cuda.get_device_name())
-print(torch.__version__)
-print(torch.version.cuda)
-x = torch.randn(1).cuda()
-print(x)
 
-
-'''
-print(torch.cuda.is_available())
-
-print(torch.cuda.get_device_capability())
-'''
-
-user= 'perso'
+user= 'Max'
 
 root_path = "C:\\Users\\" + user + "\\Documents\\GitHub\\Shark-Species-Classification"
 data_path = os.path.join(root_path, 'Genus Carcharhinus')
@@ -36,10 +24,6 @@ dataset = ImageLoader(data_path)
 
 train_dataset, test_dataset = Dataset_Splitter(.8, dataset)
 train_train_dataset, validation_dataset = Dataset_Splitter(.8, train_dataset)
-
-train_dataset, test_dataset = Dataset_Splitter(.5, dataset)
-train_train_dataset, validation_dataset = Dataset_Splitter(.9, train_dataset)
-'''
 
 BATCH_SIZE = 64
 
@@ -63,13 +47,10 @@ optimizer = optim.Adam(model.parameters())
 model = model.to(device)
 criterion = criterion.to(device)
 
-EPOCHS = [1,3,5,10,15,20,30]
 EPOCHS = 7
 best_epoch = 0
 
 best_valid_loss = float('inf')
-'''
-
 '''
 for epoch_ in trange(EPOCHS, desc="Epochs"):
 
@@ -86,7 +67,7 @@ for epoch_ in trange(EPOCHS, desc="Epochs"):
 
 '''
 
-'''
+
 #model.load_state_dict(torch.load('MMnet-model.pt'))
 
 #test_loss, test_acc = evaluate(model, test_iterator, criterion, device)
@@ -114,4 +95,3 @@ print("c: ", c)
 print("d: ", d)
 print("Training Accuracy: ", training_accuracy)
 print("Testing Accuracy: ", testing_accuracy)
-'''

@@ -18,7 +18,8 @@ def Poly_SVC(training_features, testing_features, training_labels, testing_label
             validation_predictions = svm_clf.predict(
                 testing_features)  # create predictions based of the polynomial classifier
             if accuracy_score(validation_predictions, testing_labels) >= val_accuracy:
-                val_accuracy = accuracy_score(validation_predictions, testing_labels)
+                val_accuracy = svm_clf.score(validation_predictions, testing_labels)
+                #val_accuracy = accuracy_score(validation_predictions, testing_labels)
                 returns = (i,j,val_accuracy)
 
 
@@ -59,7 +60,7 @@ def Poly_Processing_Pipeline(training_features, testing_features, training_label
         #c, d, val = returns[0], returns[1], returns[2]
 
 
-        if val < best_val:
+        if val > best_val:
             best_val = val
             best_k = k
             best_c = c
