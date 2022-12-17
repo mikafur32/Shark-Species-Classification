@@ -18,8 +18,8 @@ def Poly_SVC(training_features, testing_features, training_labels, testing_label
             validation_predictions = svm_clf.predict(
                 testing_features)  # create predictions based of the polynomial classifier
             if accuracy_score(validation_predictions, testing_labels) >= val_accuracy:
-                val_accuracy = svm_clf.score(validation_predictions, testing_labels)
-                #val_accuracy = accuracy_score(validation_predictions, testing_labels)
+                #val_accuracy = svm_clf.score(training_features, testing_labels)
+                val_accuracy = accuracy_score(validation_predictions, testing_labels)
                 returns = (i,j,val_accuracy)
 
 
@@ -30,13 +30,14 @@ def Poly_SVC(training_features, testing_features, training_labels, testing_label
 
 
 def Poly_Processing_Pipeline(training_features, testing_features, training_labels, testing_labels):
+
     descriptors_training = training_features[0]
     for descriptor in training_features[1:]:
         descriptors_training = np.vstack((descriptors_training, descriptor))
 
     clusters = [9,10,11,12,13,14,15]
 
-    best_val = np.inf
+    best_val = -np.inf
     best_k = 0
     c, d = 0,0
     best_c, best_d = 0,0
@@ -56,8 +57,6 @@ def Poly_Processing_Pipeline(training_features, testing_features, training_label
 
         c,d,val = Poly_SVC(histograms_training, histograms_testing, training_labels, testing_labels)
 
-        #returns = Poly_SVC(histograms_training, histograms_testing, training_labels, testing_labels)
-        #c, d, val = returns[0], returns[1], returns[2]
 
 
         if val > best_val:
