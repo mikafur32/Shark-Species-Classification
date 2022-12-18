@@ -6,7 +6,7 @@ from PIL import Image
 from torchvision.transforms import InterpolationMode
 from torch.utils.data import random_split
 import torch
-from Bounding_Box_Crop import *
+
 
 SEED = 0
 random.seed(SEED)
@@ -27,7 +27,6 @@ def load_dataset_folder(data_path):
                 continue
             else:
                 simage = os.path.join(file2, file3)
-                crop_bounding_box(simage, simage) # Overwrite current image with cropped
                 x.append(simage)
                 y.append(i)
         i += 1
@@ -35,13 +34,12 @@ def load_dataset_folder(data_path):
 
 
 class ImageLoader:
-    def __init__(self, dataset_path='./Modern shark teeth', resize=(336, 224), cropsize=224):
+    def __init__(self, dataset_path, resize=(224, 224)):
         self.dataset_path = dataset_path
         # load dataset
         self.x, self.y = load_dataset_folder(self.dataset_path)
         self.transform_x = transforms.Compose([
             transforms.Resize(resize, InterpolationMode.BILINEAR),
-            transforms.CenterCrop(cropsize),
             transforms.ToTensor(),
             transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                  std=[0.229, 0.224, 0.225])])
