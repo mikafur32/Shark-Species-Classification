@@ -18,10 +18,9 @@ import torch
 user= 'perso'
 
 root_path = "C:\\Users\\" + user + "\\Documents\\GitHub\\Shark-Species-Classification"
-data_path = os.path.join(root_path, 'Genus Carcharhinus')
+data_path = os.path.join(root_path, 'Genus Carcharhinus - boxed')
 
-crop_bounding_box(os.path.join(data_path, 'Bull','unused teeth', 'BU3-2-1.JPG'))
-
+write_bounding_box(data_path)
 
 
 '''
