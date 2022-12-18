@@ -3,7 +3,18 @@ from sklearn.svm import SVC
 from sklearn.cluster import KMeans
 from Build_Histogram import *
 import matplotlib.pyplot as plt
+from sklearn.model_selection import cross_val_predict
+from sklearn.metrics import confusion_matrix
 
+
+def plot_confusion_matrix(classifier, train_set, test_labels):
+    y_train_pred = cross_val_predict(svm_clf, test_set, test_labels, cv=3) #create predictions for all of the data in the test set using a threefold cross validation
+
+    conf_matrix = confusion_matrix(test_labels, y_train_pred) #create a confusion matrix to see which numbers are wrongly labeled as another number
+    conf_im = conf_matrix.im_
+    cv2.imwrite("confusionmatrix.jpg", conf_im)
+    #plt.matshow(conf_matrix, cmap=plt.cm.Blues)
+    #plt.savefig("confusionmatrix.jpg")
     
 def Testing_Poly_SVC(training_features, testing_features, training_labels, testing_labels, c, d, k):
     descriptors_training = training_features[0]
@@ -46,5 +57,5 @@ def Testing_Poly_SVC(training_features, testing_features, training_labels, testi
     testing_predictions = svm_clf.predict(histograms_testing)  # create predictions based of the polynomial classifier
 
     accuracy = accuracy_score(testing_predictions, testing_labels)
-
+    plot_confusion_matrix(svm_clf, testing_features, testing_labels)
     return accuracy
