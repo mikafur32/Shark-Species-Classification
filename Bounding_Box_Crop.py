@@ -1,14 +1,26 @@
 import cv2
 import os
 
+def write_bounding_box(data_path):
+   
+    for file1 in os.listdir(data_path):
+        file2 = os.path.join(data_path, file1)
+        for file3 in os.listdir(file2):
+            if file3 == "unused teeth":
+                continue
+            else:
+                simage = os.path.join(file2, file3)
+                crop_bounding_box(simage, simage)
+
+
 def crop_bounding_box(image_path, output_path):
 
     # Load the image
     im = cv2.imread(image_path)
-    threshold, im2 = cv2.threshold(im, 10, 255, 0)
+    threshold, im2 = cv2.threshold(im, 5, 255, 0)
 
     # Use the Canny edge detector to find edges in the image
-    edges = cv2.Canny(im2, 0, 255)
+    edges = cv2.Canny(im2, 5, 255)
 
     # Find contours in the image
     contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
