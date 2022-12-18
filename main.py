@@ -1,11 +1,12 @@
 from Build_Histogram import *
-from Detect_Feature_And_KeyPoints import *
+from Bounding_Box_Crop import *
+#from Detect_Feature_And_KeyPoints import *
 from Load_Dataset_Folder import *
 from Features_Processing import *
 from Linear_Processsing_Pipeline import *
 from Training_Poly_Processing_Pipeline import *
 from Testing_Poly_Processing_Pipeline import *
-from Evaliate_Traininf_accuracy_of_Model import *
+#from Evaliate_Traininf_accuracy_of_Model import *
 from LeNet_Implementation import *
 from torch import optim
 from tqdm.notebook import tqdm, trange
@@ -14,11 +15,16 @@ import torch.utils.data as data
 import torch
 
 
-user= 'Max'
+user= 'perso'
 
 root_path = "C:\\Users\\" + user + "\\Documents\\GitHub\\Shark-Species-Classification"
 data_path = os.path.join(root_path, 'Genus Carcharhinus')
 
+crop_bounding_box(os.path.join(data_path, 'Bull','unused teeth', 'BU3-2-1.JPG'))
+
+
+
+'''
 
 dataset = ImageLoader(data_path)
 
@@ -51,7 +57,7 @@ EPOCHS = 7
 best_epoch = 0
 
 best_valid_loss = float('inf')
-'''
+
 for epoch_ in trange(EPOCHS, desc="Epochs"):
 
     train_loss, train_acc = train(model, train_iterator, optimizer, criterion, device)
@@ -65,7 +71,6 @@ for epoch_ in trange(EPOCHS, desc="Epochs"):
     print(f'Train Loss: {train_loss:.3f} | Train Acc: {train_acc*100:.2f}%')
     print(f'\t Val. Loss: {valid_loss:.3f} |  Val. Acc: {valid_acc*100:.2f}%')
 
-'''
 
 
 #model.load_state_dict(torch.load('MMnet-model.pt'))
@@ -95,3 +100,5 @@ print("c: ", c)
 print("d: ", d)
 print("Training Accuracy: ", training_accuracy)
 print("Testing Accuracy: ", testing_accuracy)
+
+'''

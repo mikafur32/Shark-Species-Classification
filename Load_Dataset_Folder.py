@@ -6,7 +6,7 @@ from PIL import Image
 from torchvision.transforms import InterpolationMode
 from torch.utils.data import random_split
 import torch
-
+from Bounding_Box_Crop import *
 
 SEED = 0
 random.seed(SEED)
@@ -27,6 +27,7 @@ def load_dataset_folder(data_path):
                 continue
             else:
                 simage = os.path.join(file2, file3)
+                crop_bounding_box(simage, simage) # Overwrite current image with cropped
                 x.append(simage)
                 y.append(i)
         i += 1
