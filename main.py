@@ -1,4 +1,13 @@
-from Build_Histogram import *
+import os
+user= 'perso'
+
+root_path = "C:\\Users\\" + user + "\\Documents\\GitHub\\Shark-Species-Classification"
+os.chdir(os.path.join(root_path))#, 'Resources'))
+
+
+from Resources import *
+
+
 from Bounding_Box_Crop import *
 #from Detect_Feature_And_KeyPoints import *
 from Load_Dataset_Folder import *
@@ -6,8 +15,10 @@ from Features_Processing import *
 from Linear_Processsing_Pipeline import *
 from Training_Poly_Processing_Pipeline import *
 from Testing_Poly_Processing_Pipeline import *
-#from Evaliate_Traininf_accuracy_of_Model import *
+#from Evaluate_Train_Accuracy_of_Model import *
 from LeNet_Implementation import *
+from Generate_Patches import *
+
 from torch import optim
 from tqdm.notebook import tqdm, trange
 from sklearn.model_selection import train_test_split
@@ -18,9 +29,9 @@ import torch
 user= 'perso'
 
 root_path = "C:\\Users\\" + user + "\\Documents\\GitHub\\Shark-Species-Classification"
-data_path = os.path.join(root_path, 'Genus Carcharhinus - boxed')
+data_path = os.path.join(root_path, 'Genus Carcharhinus - unboxed')
 
-write_bounding_box(data_path)
+write_patches(data_path)
 
 
 '''
