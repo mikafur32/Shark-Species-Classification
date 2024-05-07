@@ -1,4 +1,4 @@
- See A Convolutional Neural Network Classification of Species within the Genus Carcharhinus.docx for formatted paper. Otherwise, here you go!
+**See A Convolutional Neural Network Classification of Species within the Genus Carcharhinus.docx for formatted paper. Otherwise, here you go!**
  
  
 
